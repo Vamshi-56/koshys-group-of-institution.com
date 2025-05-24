@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Koshys Group of Institutions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      background-color: #fff;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* Animation Keyframes */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* Top Notification Bar */
+    .top-notice {
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .top-notice::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: translateX(-100%);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      100% { transform: translateX(100%); }
+    }
+
+    /* Header Section */
+    header {
+      background-color: #00A3E0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    header.scrolled {
+      padding: 10px 40px;
+      background-color: rgba(0, 163, 224, 0.95);
+      backdrop-filter: blur(5px);
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      animation: fadeIn 1s ease;
+    }
+
+    .logo i {
+      margin-right: 10px;
+      color: #ffcc00;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
+    .main-nav {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    .main-nav li {
+      position: relative;
+    }
+
+    .main-nav li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 5px 0;
+      position: relative;
+    }
+
+    .main-nav li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: #ffcc00;
+      bottom: 0;
+      left: 0;
+      transition: width 0.3s ease;
+    }
+
+    .main-nav li a:hover::after {
+      width: 100%;
+    }
+
+    .main-nav li a:hover {
+      color: #ffcc00;
+    }
+
+    /* Dropdown Menu */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #00A3E0;
+      min-width: 220px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      border-radius: 5px;
+      z-index: 1;
+      opacity: 0;
+      transform: translateY(10px);
+      padding: 22px 19px;
+      transition: all 0.3s ease;
+
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .dropdown-content a {
+      color: #333;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      font-size: 14px;
+      border-bottom: 1px solid #eee;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f5f5f5;
+      color: #00A3E0;
+      padding-left: 20px;
+    }
+
+    .dropdown-content a:last-child {
+      border-bottom: none;
+    }
+
+    .contact-btn {
+      margin-left: 30px;
+      background-color: #fff;
+      color: #00A3E0;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .contact-btn:hover {
+      background-color: #ffcc00;
+      color: #005B9F;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+    }
+
+    /* Hamburger Menu */
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      font-size: 24px;
+    }
+
+    /* Sub Navigation */
+    .sub-nav {
+      background-color: #2f2f2f;
+      padding: 12px 40px;
+      overflow-x: auto;
+      white-space: nowrap;
+      scrollbar-width: none;
+    }
+
+    .sub-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .sub-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      animation: fadeIn 1s ease;
+    }
+
+    .sub-nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      padding: 5px 0;
+      position: relative;
+    }
+
+    .sub-nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: #00A3E0;
+      bottom: 0;
+      left: 0;
+      transition: width 0.3s ease;
+    }
+
+    .sub-nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    .sub-nav ul li a:hover {
+      color: #00A3E0;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 60px 40px;
+      background: linear-gradient(135deg, #f5f5f5 0%, #e0f7fa 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0,163,224,0.1) 0%, rgba(0,163,224,0) 70%);
+      z-index: 0;
+    }
+
+    .hero-text {
+      flex: 1 1 50%;
+      padding: 30px;
+      position: relative;
+      z-index: 1;
+      animation: fadeIn 1s ease;
+    }
+
+    .hero-text h2 {
+      font-size: 42px;
+      margin-bottom: 15px;
+      line-height: 1.2;
+      color: #005B9F;
+    }
+
+    .hero-text h2 span {
+      font-weight: 700;
+      color: #00A3E0;
+      display: inline-block;
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      margin: 20px 0;
+      color: #555;
+    }
+
+    .hero-text h1 {
+      font-size: 28px;
+      margin-bottom: 30px;
+      color: #005B9F;
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-text h1::after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 3px;
+      background: #ffcc00;
+      bottom: -10px;
+      left: 0;
+    }
+
+    .hero-text .btn {
+      background-color: #005B9F;
+      color: #fff;
+      padding: 15px 30px;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      display: inline-block;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,91,159,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-text .btn:hover {
+      background-color: #00A3E0;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,91,159,0.4);
+    }
+
+    .hero-text .btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .hero-text .btn:hover::after {
+      left: 100%;
+    }
+
+    .hero-image {
+      flex: 1 1 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+      animation: slideInRight 1s ease;
+    }
+
+    .hero-image img {
+      max-width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      transition: transform 0.5s ease;
+    }
+
+    .hero-image:hover img {
+      transform: scale(1.03);
+    }
+
+    /* Floating Sidebar Buttons */
+    .floating-buttons {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      z-index: 1000;
+      animation: fadeIn 1s ease;
+    }
+
+    .floating-buttons a {
+      background-color: #005B9F;
+      color: #fff;
+      padding: 15px 10px;
+      text-align: center;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      margin: 5px 0;
+      text-decoration: none;
+      border-radius: 5px 0 0 5px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: -3px 3px 10px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .floating-buttons a i {
+      transform: rotate(90deg);
+      margin-right: 5px;
+    }
+
+    .floating-buttons a.enquiry-btn {
+      background-color: #00A3E0;
+    }
+
+    .floating-buttons a.apply-btn {
+      background-color: #ff6600;
+    }
+
+    .floating-buttons a:hover {
+      padding-right: 15px;
+      transform: rotate(180deg) translateX(5px);
+    }
+
+    /* Courses Section */
+    .courses-section {
+      padding: 80px 40px;
+      background-color: #fff;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 36px;
+      color: #005B9F;
+      margin-bottom: 50px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 3px;
+      background: #ffcc00;
+      bottom: -10px;
+      left: 25%;
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .course-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+
+    .course-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    .course-img {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .course-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .course-card:hover .course-img img {
+      transform: scale(1.1);
+    }
+
+    .course-content {
+      padding: 20px;
+    }
+
+    .course-content h3 {
+      font-size: 22px;
+      color: #005B9F;
+      margin-bottom: 10px;
+    }
+
+    .course-content p {
+      color: #666;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    .course-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+    }
+
+    .course-duration, .course-fee {
+      display: flex;
+      align-items: center;
+      color: #555;
+      font-size: 14px;
+    }
+
+    .course-duration i, .course-fee i {
+      margin-right: 5px;
+      color: #00A3E0;
+    }
+
+    .course-btn {
+      display: inline-block;
+      padding: 8px 15px;
+      background-color: #00A3E0;
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .course-btn:hover {
+      background-color: #005B9F;
+    }
+
+    /* Features Section */
+    .features-section {
+      padding: 80px 40px;
+      background-color: #f9f9f9;
+      text-align: center;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .feature-card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #00A3E0, #005B9F);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: #fff;
+      font-size: 30px;
+    }
+
+    .feature-card h3 {
+      font-size: 20px;
+      color: #005B9F;
+      margin-bottom: 15px;
+    }
+
+    .feature-card p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    /* Testimonials Section */
+    .testimonials-section {
+      padding: 80px 40px;
+      background-color: #005B9F;
+      color: #fff;
+      text-align: center;
+    }
+
+    .testimonials-section .section-title {
+      color: #fff;
+    }
+
+    .testimonials-section .section-title::after {
+      background: #ffcc00;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .testimonial-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(5px);
+      padding: 30px;
+      border-radius: 10px;
+      text-align: left;
+      transition: all 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+      background: rgba(255,255,255,0.15);
+      transform: translateY(-5px);
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .testimonial-text::before {
+      content: '"';
+      font-size: 60px;
+      color: rgba(255,255,255,0.2);
+      position: absolute;
+      top: -20px;
+      left: -10px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+
+    .author-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 15px;
+    }
+
+    .author-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .author-info h4 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .author-info p {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #2f2f2f;
+      color: #fff;
+      padding: 60px 40px 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h3 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      width: 40px;
+      height: 2px;
+      background: #00A3E0;
+      bottom: 0;
+      left: 0;
+    }
+
+    .footer-col p {
+      margin-bottom: 15px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      opacity: 0.8;
+      transition: all 0.3s ease;
+      display: block;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+      color: #00A3E0;
+      padding-left: 5px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background: #00A3E0;
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 1200px) {
+      .hero-text h2 {
+        font-size: 36px;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .main-nav {
+        position: fixed;
+        top: 80px;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: calc(100vh - 80px);
+        background-color: #00A3E0;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 40px 30px;
+        transition: right 0.3s ease;
+        overflow-y: auto;
+      }
+
+      .main-nav.active {
+        right: 0;
+      }
+
+      .main-nav li {
+        margin: 15px 0;
+        width: 100%;
+      }
+
+      .dropdown-content {
+        position: static;
+        display: none;
+        width: 100%;
+        box-shadow: none;
+        background-color: rgba(0,0,0,0.1);
+        margin-top: 10px;
+        border-radius: 0;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: none;
+      }
+
+      .dropdown.active .dropdown-content {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .dropdown-content a {
+        color: #fff;
+        padding: 10px 15px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+
+      .dropdown-content a:hover {
+        background-color: rgba(255,255,255,0.1);
+        color: #ffcc00;
+      }
+
+      .contact-btn {
+        margin-left: 0;
+        margin-top: 20px;
+        width: 100%;
+        text-align: center;
+      }
+
+      .hero-text h2 {
+        font-size: 32px;
+      }
+
+      .hero-text h1 {
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header, .sub-nav {
+        padding: 15px 20px;
+      }
+
+      .hero {
+        padding: 40px 20px;
+        flex-direction: column;
+      }
+
+      .hero-text, .hero-image {
+        flex: 1 1 100%;
+      }
+
+      .hero-text {
+        padding: 20px 0;
+        margin-bottom: 30px;
+      }
+
+      .courses-section, .features-section, .testimonials-section {
+        padding: 60px 20px;
+      }
+
+      .sub-nav ul {
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero-text h2 {
+        font-size: 28px;
+      }
+
+      .section-title {
+        font-size: 30px;
+      }
+
+      .floating-buttons {
+        display: none;
+      }
+
+      .sub-nav ul {
+        gap: 10px;
+        font-size: 12px;
+      }
+
+      .course-card, .feature-card, .testimonial-card {
+        margin: 0 auto;
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 22px;
+      }
+
+      .hero-text h2 {
+        font-size: 24px;
+      }
+
+      .hero-text h1 {
+        font-size: 20px;
+      }
+
+      .section-title {
+        font-size: 26px;
+      }
+
+      .sub-nav {
+        padding: 10px 15px;
+      }
+
+      .sub-nav ul {
+        gap: 8px;
+      }
+    }
+    .logo {
+  display: flex;
+  align-items: center;
+  animation: fadeIn 1s ease;
+  height: 60px; /* Adjust based on your header height */
+}
+
+.logo img {
+  height: 100%; /* Makes image fill the logo container height */
+  width: auto; /* Maintains aspect ratio */
+  max-width: 200px; /* Optional: prevents logo from getting too wide */
+  object-fit: contain;
+}
+
+/* Hide the text and icon if you only want the logo */
+.logo i, .logo span {
+  display: none;
+}
+/* moving text */
+.top-notice {
+      background-color: #000;
+      color: #fff;
+      padding: 10px 0;
+      font-size: 14px;
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 100%;
+    }
+    .moving-text {
+      display: inline-block;
+      position: relative;
+      left: 100%;
+    }
+
+    
+
+  </style>
+</head>
+<body>
+
+  <!-- Top Notification Bar -->
+ <div class="top-notice">
+    <div class="moving-text">All fee payments to be made directly to the accounts department of the Institute and fee receipt to be collected against the same. The institute will not take any responsibility for any fee paid to the consultants or any third party.
+            
+ </div></div>
+
+
+  <!-- Header Section -->
+  <header id="main-header">
+    <div class="logo">
+      <i class="fas fa-graduation-cap"></i>
+      <img src="https://www.kgi.edu.in/assets/images/KGI_Logo_Dark.png" alt="">
+    </div>
+    <div class="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+    <nav>
+      <ul class="main-nav">
+        <li><a href="#">About</a></li>
+        <li><a href="#">Academics</a></li>
+        <li><a href="#">Admissions</a></li>
+        <li class="dropdown">
+          <a href="#">NAAC <i class="fas fa-chevron-down"></i></a>
+          <div class="dropdown-content">
+            <!-- <a href="#">NAAC Accreditation</a>
+            <a href="#">SSR Report</a>
+            <a href="#">AQAR Reports</a>
+            <a href="#">Institutional Distinctiveness</a> -->
+            <a href="#">Criteria's</a>
+                  <a href="criteria01.html">Criteria 1 - Curricular Aspects</a>
+                  <a href="criteria02.html">Criteria 2 - Teaching-Learning and Evaluation</a>
+                  <a href="criteria03.html">Criteria 3 - Research, Innovations and Extension</a>
+                  <a href="criteria04.html">Criteria 4 - Infrastructure and Learning Resources</a>
+                  <a href="criteria05.html">Criteria 5 - Student Support and Progression</a>
+                  <!-- <a href="">Criteria 6 - Governance, Leadership and Management</a> -->
+                  <!-- <a href="#">Criteria 7 - Institutional Values and Best Practices</a> -->
+                  <!-- <a href="#">Criteria 8 - Additional Metrics (if applicable)</a> -->
+            <!-- <a href="#">IQAC</a> -->
+          <!-- </div> -->
+        </li>
+        <li><a href="#">UGC</a></li>
+        <li><a href="#">AICTE</a></li>
+        <button class="contact-btn">Contact Us</button>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Sub Navigation -->
+  <div class="sub-nav">
+    <ul>
+      <li><a href="#">About KIMS</a></li>
+      <li><a href="#">Faculty & Staff</a></li>
+      <li><a href="#">IQAC</a></li>
+      <li><a href="#">Facilities</a></li>
+      <li><a href="#">Library</a></li>
+      <li><a href="#">Examinations</a></li>
+      <li><a href="#">Placements</a></li>
+      <li><a href="#">Research</a></li>
+      <li><a href="#">Alumni</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <h2>Not just degrees.<br><span>We shape doers, thinkers, leaders</span></h2>
+      <p>Programmes offered</p>
+      <h1>BBA | BCA | BCOM | BVA | BA | MBA</h1>
+      <a href="#" class="btn">ENROLL NOW</a>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Campus Image" />
+    </div>
+  </section>
+
+  <!-- Courses Section -->
+  <section class="courses-section">
+    <h2 class="section-title">Our Programs</h2>
+    <div class="courses-grid">
+      <div class="course-card">
+        <div class="course-img">
+          <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="BBA">
+        </div>
+        <div class="course-content">
+          <h3>Bachelor of Business Administration (BBA)</h3>
+          <p>Develop business acumen and leadership skills with our industry-aligned BBA program.</p>
+          <div class="course-meta">
+            <span class="course-duration"><i class="far fa-clock"></i> 3 Years</span>
+            <a href="#" class="course-btn">Learn More</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="course-card">
+        <div class="course-img">
+          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="BCA">
+        </div>
+        <div class="course-content">
+          <h3>Bachelor of Computer Applications (BCA)</h3>
+          <p>Master cutting-edge technologies and software development with our BCA program.</p>
+          <div class="course-meta">
+            <span class="course-duration"><i class="far fa-clock"></i> 3 Years</span>
+            <a href="#" class="course-btn">Learn More</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="course-card">
+        <div class="course-img">
+          <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="MBA">
+        </div>
+        <div class="course-content">
+          <h3>Master of Business Administration (MBA)</h3>
+          <p>Advance your career with our AACSB-accredited MBA program with multiple specializations.</p>
+          <div class="course-meta">
+            <span class="course-duration"><i class="far fa-clock"></i> 2 Years</span>
+            <a href="#" class="course-btn">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section">
+    <h2 class="section-title">Why Choose Koshys</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-chalkboard-teacher"></i>
+        </div>
+        <h3>Expert Faculty</h3>
+        <p>Learn from industry experts and academicians with years of teaching and professional experience.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-laptop-code"></i>
+        </div>
+        <h3>Modern Facilities</h3>
+        <p>State-of-the-art labs, smart classrooms, and extensive learning resources for holistic development.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-briefcase"></i>
+        </div>
+        <h3>Placement Support</h3>
+        <p>90% placement record with tie-ups with 200+ top companies across various sectors.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-globe-asia"></i>
+        </div>
+        <h3>Global Exposure</h3>
+        <p>International collaborations, student exchange programs, and global certification opportunities.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials-section">
+    <h2 class="section-title">What Our Students Say</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-text">
+          <p>The BBA program at Koshys provided me with practical knowledge and industry exposure that helped me secure my dream job at Deloitte right after graduation.</p>
+        </div>
+        <div class="testimonial-author">
+          <div class="author-img">
+            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Riya Sharma">
+          </div>
+          <div class="author-info">
+            <h4>Riya Sharma</h4>
+            <p>BBA Graduate, 2022</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <div class="testimonial-text">
+          <p>The faculty's personalized attention and the hands-on projects in the BCA program gave me the confidence to start my own tech startup immediately after college.</p>
+        </div>
+        <div class="testimonial-author">
+          <div class="author-img">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Arjun Patel">
+          </div>
+          <div class="author-info">
+            <h4>Arjun Patel</h4>
+            <p>BCA Graduate, 2021</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <div class="testimonial-text">
+          <p>The MBA program transformed my career trajectory. The industry visits, guest lectures, and case study approach helped me transition from engineering to product management.</p>
+        </div>
+        <div class="testimonial-author">
+          <div class="author-img">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Priya Nair">
+          </div>
+          <div class="author-info">
+            <h4>Priya Nair</h4>
+            <p>MBA Graduate, 2023</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Sidebar Buttons -->
+  <div class="floating-buttons">
+    <a href="#" class="enquiry-btn"><i class="fas fa-question-circle"></i> Enquiry Now</a>
+    <a href="#" class="apply-btn"><i class="fas fa-edit"></i> Apply Now</a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>About Koshys</h3>
+        <p>Koshys Group of Institutions is a premier educational institution committed to academic excellence and holistic development of students since 2005.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Academics</a></li>
+          <li><a href="#">Admissions</a></li>
+          <li><a href="#">Placements</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h3>Programs</h3>
+        <ul class="footer-links">
+          <li><a href="#">BBA</a></li>
+            <li><a href="#">BCA</a></li>
+            <li><a href="#">B.Com</a></li>
+            <li><a href="#">BVA</a></li>
+            <li><a href="#">BA</a></li>
+            <li><a href="#">MBA</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <p><i class="fas fa-map-marker-alt"></i> Koshys Campus, Hennur-Bagalur Road, Bangalore - 560077</p>
+          <p><i class="fas fa-phone"></i> +91 80 2846 5555</p>
+          <p><i class="fas fa-envelope"></i> info@koshys.org</p>
+          <p><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 5:00 PM</p>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2023 Koshys Group of Institutions. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a></p>
+      </div>
+    </footer>
+  
+    <script>
+      // Mobile Menu Toggle
+      const menuToggle = document.querySelector('.menu-toggle');
+      const mainNav = document.querySelector('.main-nav');
+      
+      menuToggle.addEventListener('click', () => {
+        mainNav.classList.toggle('active');
+        menuToggle.innerHTML = mainNav.classList.contains('active') ? 
+          '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+      });
+      
+      // Dropdown Menu for Mobile
+      const dropdowns = document.querySelectorAll('.dropdown');
+      
+      dropdowns.forEach(dropdown => {
+        const link = dropdown.querySelector('a');
+        
+        link.addEventListener('click', (e) => {
+          if (window.innerWidth <= 992) {
+            e.preventDefault();
+            dropdown.classList.toggle('active');
+          }
+        });
+      });
+      
+      // Header Scroll Effect
+      const header = document.getElementById('main-header');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+      
+      // Smooth Scrolling for Anchor Links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+            
+            // Close mobile menu if open
+            if (mainNav.classList.contains('active')) {
+              mainNav.classList.remove('active');
+              menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+          }
+        });
+      });
+      
+      // Animation on Scroll
+      function animateOnScroll() {
+        const elements = document.querySelectorAll('.course-card, .feature-card, .testimonial-card');
+        
+        elements.forEach(element => {
+          const elementPosition = element.getBoundingClientRect().top;
+          const screenPosition = window.innerHeight / 1.3;
+          
+          if (elementPosition < screenPosition) {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+          }
+        });
+      }
+      
+      // Set initial state for animated elements
+      document.querySelectorAll('.course-card, .feature-card, .testimonial-card').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'all 0.6s ease';
+      });
+      
+      window.addEventListener('scroll', animateOnScroll);
+      window.addEventListener('load', animateOnScroll);
+
+      // moving txt
+      document.addEventListener('DOMContentLoaded', function() {
+      const movingText = document.querySelector('.moving-text');
+      const container = document.querySelector('.top-notice');
+      let animationId;
+      let startTime;
+      let paused = false;
+      let pausedTime = 0;
+      let pauseStartTime = 0;
+      const duration = 15000; // 15 seconds for one complete cycle
+      
+      function animateText(timestamp) {
+        if (paused) return;
+        
+        if (!startTime) startTime = timestamp;
+        const adjustedTimestamp = timestamp - pausedTime;
+        const elapsed = adjustedTimestamp - startTime;
+        const progress = (elapsed % duration) / duration;
+        
+        const containerWidth = container.offsetWidth;
+        const textWidth = movingText.offsetWidth;
+        const totalDistance = containerWidth + textWidth;
+        const position = containerWidth - (progress * totalDistance);
+        
+        movingText.style.left = position + 'px';
+        
+        if (position < -textWidth) {
+          movingText.style.left = containerWidth + 'px';
+        }
+        
+        animationId = requestAnimationFrame(animateText);
+      }
+      
+      // Start animation
+      animationId = requestAnimationFrame(animateText);
+      
+      // Pause on hover
+      container.addEventListener('mouseenter', function() {
+        if (!paused) {
+          paused = true;
+          pauseStartTime = performance.now();
+          cancelAnimationFrame(animationId);
+        }
+      });
+      
+      // Resume when mouse leaves
+      container.addEventListener('mouseleave', function() {
+        if (paused) {
+          paused = false;
+          pausedTime += performance.now() - pauseStartTime;
+          animationId = requestAnimationFrame(animateText);
+        }
+      });
+      
+      // Handle window resize
+      window.addEventListener('resize', function() {
+        if (!paused) {
+          cancelAnimationFrame(animationId);
+          animationId = requestAnimationFrame(animateText);
+        }
+      });
+    });
+    </script>
+  </body>
+  </html>

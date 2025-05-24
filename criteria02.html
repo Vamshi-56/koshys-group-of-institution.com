@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NAAC Criteria 1 - Koshys Group of Institutions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f9f9f9;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    /* Notification Bar */
+    .top-note {
+      background: linear-gradient(90deg, #000, #333);
+      color: white;
+      padding: 8px 10px;
+      font-size: 14px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .top-note::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: translateX(-100%);
+      animation: shine 3s infinite;
+    }
+    
+    @keyframes shine {
+      100% { transform: translateX(100%); }
+    }
+    
+    /* Header Styles */
+    .top-bar {
+      background: linear-gradient(135deg, #0191d0, #005b9f);
+      padding: 15px 30px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .top-bar h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 700;
+      animation: fadeIn 1s ease;
+    }
+    
+    .contact-btn {
+      background: white;
+      color: #0191d0;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .contact-btn:hover {
+      background: #ffcc00;
+      color: #005b9f;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    /* Navigation */
+    .nav-bar {
+      background: #222;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0 20px;
+      justify-content: center;
+    }
+    
+    .nav-bar a {
+      color: white;
+      padding: 12px 15px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .nav-bar a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: #0191d0;
+      bottom: 8px;
+      left: 15px;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-bar a:hover::after {
+      width: calc(100% - 30px);
+    }
+    
+    .nav-bar a:hover {
+      color: #0191d0;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+      position: relative;
+      animation: fadeIn 1s ease;
+    }
+    
+    .hero h2 {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    
+    .hero p {
+      font-size: 18px;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+    
+    /* Main Content */
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+      animation: fadeIn 1s ease;
+    }
+    
+    /* Tables */
+    .table-container {
+      margin: 40px 0;
+      overflow-x: auto;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .table-container:hover {
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    th, td {
+      border: 1px solid #e0e0e0;
+      padding: 15px;
+      text-align: left;
+      vertical-align: top;
+    }
+    
+    th {
+      background: linear-gradient(135deg, #0191d0, #005b9f);
+      color: white;
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+    
+    tr:hover {
+      background-color: #f1f8ff;
+    }
+    
+    .download-btn {
+      background-color: #0191d0;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    
+    .download-btn i {
+      margin-right: 5px;
+    }
+    
+    .download-btn:hover {
+      background-color: #005b9f;
+      transform: translateY(-2px);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    /* Side Buttons */
+    .side-buttons {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+      animation: slideInRight 1s ease;
+    }
+    
+    .side-btn {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      background: #0191d0;
+      color: white;
+      padding: 15px 10px;
+      margin: 5px 0;
+      cursor: pointer;
+      text-align: center;
+      font-weight: 600;
+      border-radius: 5px 0 0 5px;
+      transition: all 0.3s ease;
+      box-shadow: -3px 3px 10px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .side-btn.enquiry {
+      background: #005b9f;
+    }
+    
+    .side-btn.apply {
+      background: #ff6600;
+    }
+    
+    .side-btn i {
+      transform: rotate(90deg);
+      margin-right: 5px;
+    }
+    
+    .side-btn:hover {
+      padding-right: 15px;
+      transform: rotate(180deg) translateX(5px);
+    }
+    
+    /* Scroll to Top Button */
+    .scroll-top {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: #0191d0;
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+    
+    .scroll-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .scroll-top:hover {
+      background: #005b9f;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .hero h2 {
+        font-size: 36px;
+      }
+      
+      .nav-bar {
+        justify-content: flex-start;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      .nav-bar::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .top-bar {
+        padding: 12px 20px;
+      }
+      
+      .top-bar h1 {
+        font-size: 24px;
+      }
+      
+      .hero {
+        padding: 80px 20px;
+      }
+      
+      .hero h2 {
+        font-size: 32px;
+      }
+      
+      .hero p {
+        font-size: 16px;
+      }
+      
+      th, td {
+        padding: 12px 10px;
+        font-size: 14px;
+      }
+      
+      .side-buttons {
+        display: none;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero h2 {
+        font-size: 28px;
+      }
+      
+      .hero p {
+        font-size: 14px;
+      }
+      
+      .contact-btn {
+        padding: 6px 15px;
+        font-size: 14px;
+      }
+      
+      th, td {
+        padding: 10px 8px;
+        font-size: 13px;
+      }
+      
+      .download-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+      }
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      animation: fadeIn 1s ease;
+      height: 60px;
+    }
+
+    .logo img {
+      height: 100%;
+      width: auto;
+      max-width: 200px;
+      object-fit: contain;
+    }
+
+    .logo i, .logo span {
+      display: none;
+    }
+    .top-notice {
+      background-color: #000;
+      color: #fff;
+      padding: 10px 0;
+      font-size: 14px;
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 100%;
+    }
+    .moving-text {
+      display: inline-block;
+      position: relative;
+      left: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-notice">
+    <div class="moving-text">All fee payments to be made directly to the accounts department of the Institute and fee receipt to be collected against the same. The institute will not take any responsibility for any fee paid to the consultants or any third party.</div>
+  </div>
+
+  <div class="top-bar">
+    <div class="logo">
+      <i class="fas fa-graduation-cap"></i>
+      <img src="https://www.kgi.edu.in/assets/images/KGI_Logo_Dark.png" alt="">
+    </div>
+    <button class="contact-btn">Contact Us</button>
+  </div>
+
+  <div class="nav-bar">
+    <a href="#">About</a>
+    <a href="#">Academics</a>
+    <a href="#">Admissions</a>
+    <a href="#">NAAC</a>
+    <a href="#">UGC</a>
+    <a href="#">AICTE</a>
+    <a href="#">Faculty & Staff</a>
+    <a href="#">IQAC</a>
+    <a href="#">Facilities</a>
+  </div>
+
+  <div class="hero">
+    <h2>CRITERIA 2</h2>
+    <p>Curricular Aspects - Quality Benchmarking</p>
+  </div>
+
+  <div class="container">
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr><th>Metric No.</th><th>1.1 Curricular Planning and Implementation</th><th>Download</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1.1.1.</td>
+            <td>The Institution ensures effective curriculum delivery through a well planned and documented process including adherence to academic calendar, monitoring attendance, completion of syllabus, extra classes for slow learners, mentoring, etc.</td>
+            <td>
+              <button class="download-btn" onclick="location.href='pdfs/report.pdf'">
+                <i class="fas fa-download"></i> Effective Curriculum Delivery
+              </button>
+            </td>
+
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr><th>Metric No.</th><th>1.2 Academic Flexibility</th><th>Download</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1.2.1.</td>
+            <td>Number of Add on/Certificate/Value added programs offered during the last five years</td>
+            <td><button class="download-btn" onclick="location.href='pdfs/report.pdf'">
+              <i class="fas fa-download"></i> Effective Curriculum Delivery
+            </button></td>
+          <tr>
+            <td>1.2.2.</td>
+            <td>Average percentage of students enrolled in Certificate/ Add-on programs as against the total number of students during the last five years</td>
+            <td><button class="download-btn" onclick="location.href='pdfs/report.pdf'"><i class="fas fa-download"></i> Certificate Program</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr><th>Metric No.</th><th>1.3 Curriculum Enrichment</th><th>Download</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1.3.1.</td>
+            <td>Institution integrates cross cutting issues relevant to Professional Ethics, Gender, Human Values, Environment and Sustainability into the Curriculum</td>
+            <td><button class="download-btn"onclick="location.href='pdfs/report.pdf'"><i class="fas fa-download"></i> Cross Cutting Issues</button></td>
+          </tr>
+          <tr>
+            <td>1.3.2.</td>
+            <td>Percentage of students undertaking field projects / internships / student projects (Data for the latest completed academic year)</td>
+            <td><button class="download-btn" onclick="location.href='pdfs/report.pdf'"><i class="fas fa-download"></i> Students Undertaking Field Projects</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr><th>Metric No.</th><th>1.4 Feedback System</th><th>Download</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1.4.1.</td>
+            <td>Institution obtains feedback on academic performance from students, teachers and other stakeholders, which is processed and utilized for quality improvement</td>
+            <td><button class="download-btn" onclick="location.href='pdfs/report.pdf'"><i class="fas fa-download"></i> Supporting Document</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="side-buttons">
+    <div class="side-btn enquiry"><i class="fas fa-question-circle"></i>Enquiry Now</div>
+    <div class="side-btn apply"><i class="fas fa-edit"></i>Apply Now</div>
+  </div>
+
+  <div class="scroll-top"><i class="fas fa-arrow-up"></i></div>
+
+  <script>
+    // Scroll to Top Button
+    const scrollTopBtn = document.querySelector('.scroll-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollTopBtn.classList.add('active');
+      } else {
+        scrollTopBtn.classList.remove('active');
+      }
+    });
+    
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Smooth Scrolling for Navigation Links
+    document.querySelectorAll('.nav-bar a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Contact Button Animation
+    const contactBtn = document.querySelector('.contact-btn');
+    contactBtn.addEventListener('mouseenter', () => {
+      contactBtn.style.transform = 'translateY(-2px)';
+    });
+    contactBtn.addEventListener('mouseleave', () => {
+      contactBtn.style.transform = 'translateY(0)';
+    });
+    contactBtn.addEventListener('click', () => {
+      alert('Contact form will appear here');
+    });
+    
+    // Side Buttons Functionality
+    document.querySelectorAll('.side-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const action = this.classList.contains('enquiry') ? 'Enquiry' : 'Application';
+        alert(`${action} form will appear here`);
+      });
+    });
+//pdf downloaded
+//     const driveFiles = {
+//   'effective_curriculum_delivery.pdf': '1-xIvpnPi61P5SMiMwaW8150EqKqTn-C0t',
+  
+//   'add_on_programs.pdf': 'YOUR_FILE_ID_FOR_ADD_ON_PROGRAMS',
+//   'certificate_program.pdf': 'YOUR_FILE_ID_FOR_CERTIFICATE_PROGRAM',
+//   'cross_cutting_issues.pdf': 'YOUR_FILE_ID_FOR_CROSS_CUTTING',
+//   'students_field_projects.pdf': 'YOUR_FILE_ID_FOR_FIELD_PROJECTS',
+//   'supporting_document.pdf': 'YOUR_FILE_ID_FOR_SUPPORTING_DOC'
+// };
+
+// function downloadPDF(filename) {
+//   if (driveFiles[filename]) {
+//     const downloadUrl = `https://drive.google.com/uc?export=download&id=${driveFiles[pdf]}`;
+//     window.open(downloadUrl, '_blank');
+//   } else {
+//     alert(`PDF "${filename}" is not available yet. Please try again later.`);
+//   }
+// }
+
+    // Moving Text Animation
+    document.addEventListener('DOMContentLoaded', function() {
+      const movingText = document.querySelector('.moving-text');
+      const container = document.querySelector('.top-notice');
+      let animationId;
+      let startTime;
+      let paused = false;
+      let pausedTime = 0;
+      let pauseStartTime = 0;
+      const duration = 15000; // 15 seconds for one complete cycle
+      
+      function animateText(timestamp) {
+        if (paused) return;
+        
+        if (!startTime) startTime = timestamp;
+        const adjustedTimestamp = timestamp - pausedTime;
+        const elapsed = adjustedTimestamp - startTime;
+        const progress = (elapsed % duration) / duration;
+        
+        const containerWidth = container.offsetWidth;
+        const textWidth = movingText.offsetWidth;
+        const totalDistance = containerWidth + textWidth;
+        const position = containerWidth - (progress * totalDistance);
+        
+        movingText.style.left = position + 'px';
+        
+        if (position < -textWidth) {
+          movingText.style.left = containerWidth + 'px';
+        }
+        
+        animationId = requestAnimationFrame(animateText);
+      }
+      
+      // Start animation
+      animationId = requestAnimationFrame(animateText);
+      
+      // Pause on hover
+      container.addEventListener('mouseenter', function() {
+        if (!paused) {
+          paused = true;
+          pauseStartTime = performance.now();
+          cancelAnimationFrame(animationId);
+        }
+      });
+      
+      // Resume when mouse leaves
+      container.addEventListener('mouseleave', function() {
+        if (paused) {
+          paused = false;
+          pausedTime += performance.now() - pauseStartTime;
+          animationId = requestAnimationFrame(animateText);
+        }
+      });
+      
+      // Handle window resize
+      window.addEventListener('resize', function() {
+        if (!paused) {
+          cancelAnimationFrame(animationId);
+          animationId = requestAnimationFrame(animateText);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
